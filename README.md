@@ -1,23 +1,28 @@
 # daniel-info
-##Instalação Servidor
+
+### Instalação do Servidor!
+
 ​
 Ao Criar o servidor EC2 deve atualizar e instalar os seguintes pacotes:
 yum update
 yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
 yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php
 
-##Instalação do RDS Mysql
+### Instalação do RDS Mysql 5.7!
+
 ​
 Criar um RDS Mysql versão 5.7 com acesso apenas a rede interna amazon na porta 3306, usuario e senha do banco.
 
-##Configurar o acesso Mysql e criar Database para o Worpress
+### Configurar o acesso Mysql e criar Databade para o Wordpress!
+
 ​
 No servidor apache instalar o mysql
 yum install mysql
 Conectar no servidor RDS através do comando: mysql -h database-1.cndqlf2jwce3.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
 Criar um database: create databse caseinfo;
 
-##Instalar o Worpress e configurar o Mysql RDS
+### Instalar o Wordpress e configurar o Mysql RDS!
+
 ​
 wget https://wordpress.org/latest.tar.gz (Instalar a última versão)
 tar -xzf latest.tar.gz (desconpactar o arquivo)
@@ -32,24 +37,23 @@ define('DB_PASSWORD', 'senha');
 define('DB_HOST', 'endpoint do rds mysql');
 
 https://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
-  Encontrar no arquivo, deletar e colar as linhas:
-  
-define('AUTH_KEY',         ' #U$$+[RXN8:b^-L 0(WU_+ c+WFkI~c]o]-bHw+)/Aj[wTwSiZ<Qb[mghEXcRh-');
-define('SECURE_AUTH_KEY',  'Zsz._P=l/|y.Lq)XjlkwS1y5NJ76E6EJ.AV0pCKZZB,*~*r ?6OP$eJT@;+(ndLg');
-define('LOGGED_IN_KEY',    'ju}qwre3V*+8f_zOWf?{LlGsQ]Ye@2Jh^,8x>)Y |;(^[Iw]Pi+LG#A4R?7N`YB3');
-define('NONCE_KEY',        'P(g62HeZxEes|LnI^i=H,[XwK9I&[2s|:?0N}VJM%?;v2v]v+;+^9eXUahg@::Cj');
-define('AUTH_SALT',        'C$DpB4Hj[JK:?{ql`sRVa:{:7yShy(9A@5wg+`JJVb1fk%_-Bx*M4(qc[Qg%JT!h');
-define('SECURE_AUTH_SALT', 'd!uRu#}+q#{f$Z?Z9uFPG.${+S{n~1M&%@~gL>U>NV<zpD-@2-Es7Q1O-bp28EKv');
-define('LOGGED_IN_SALT',   ';j{00P*owZf)kVD+FVLn-~ >.|Y%Ug4#I^*LVd9QeZ^&XmK|e(76miC+&W&+^0P/');
-define('NONCE_SALT',       '-97r*V/cgxLmp?Zy4zUU4r99QQ_rGs2LTd%P;|_e1tS)8_B/,.6[=UK<J_y9?JWG');
+  Encontrar no arquivo, deletar e colar todas as linhas do site:
+  define('AUTH_KEY',         'XyOG`meM9KCY%s%SJhsy171hhMfw4MnW#VMne3y-EE 2r.1l0tQTAZDAL`OwwjCH');
+define('SECURE_AUTH_KEY',  '$8gTHj|AAsy4LV|?^o<i<E|X)3ulta _{5SOp^WiT_2S4Tfav=j#OGV*ik4_:(Ba');
+define('LOGGED_IN_KEY',    '2ybXyg%+TkaVMUj5/=jmxYRq1E,W!CWt^Hpxj?#qq0-1|j!#CmKM5+UI-?Ec7 Q/');
+define('NONCE_KEY',        'k?0KIKi?A^^ve=.-v5egYd!czzvOxbd,%$rs%,&Ar8WtU<oQ+LP.B}c4g0b7b-j:');
+define('AUTH_SALT',        'o-EI$-j/Z3C4wj@08L#>qzN-E:UJdgguW[-JZ57SyHyE|#8Ji~Kv%M6oKO$.2AcR');
+
+Salvar o arquivo
+yum install php70-mysql (php usar o banco mysql)
+mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
+rm -rf wordpress (deletar a pasta do wordpress vazia)
+chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
+acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha 
 
 
+### Instalar o Wordpress e configurar o Mysql RDS!
 
-​
- - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
- - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
- - Uso de Shell Script **Linux**.
- - [Docker](https://www.docker.com/) 
 ​
 
   - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
