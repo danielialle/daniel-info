@@ -3,53 +3,53 @@
 ### Instalação do Servidor!
 
 ​
-Ao Criar o servidor EC2 deve atualizar e instalar os seguintes pacotes:
-yum update
-yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
-yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php
+-Ao Criar o servidor EC2 deve atualizar e instalar os seguintes pacotes:
+-yum update
+-yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
+-yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php
 
 ### Instalação do RDS Mysql 5.7!
 
 ​
-Criar um RDS Mysql versão 5.7 com acesso apenas a rede interna amazon na porta 3306, usuario e senha do banco.
+-Criar um RDS Mysql versão 5.7 com acesso apenas a rede interna amazon na porta 3306, usuario e senha do banco.
 
 ### Configurar o acesso Mysql e criar Databade para o Wordpress!
 
 ​
-No servidor apache instalar o mysql
-yum install mysql
-Conectar no servidor RDS através do comando: mysql -h database-1.cndqlf2jwce3.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
-Criar um database: create databse caseinfo;
+-No servidor apache instalar o mysql
+-yum install mysql
+-Conectar no servidor RDS através do comando: mysql -h database-1.cndqlf2jwce3.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+-Criar um database: create databse caseinfo;
 
 ### Instalar o Wordpress e configurar o Mysql RDS!
 
 ​
-wget https://wordpress.org/latest.tar.gz (Instalar a última versão)
-tar -xzf latest.tar.gz (desconpactar o arquivo)
-cd wordpress/ (acessar a pasta Wordpress)
-cp wp-config-sample.php wp-config.php (copiar o arquivo de configuração)
-vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
+-wget https://wordpress.org/latest.tar.gz (Instalar a última versão)
+-tar -xzf latest.tar.gz (desconpactar o arquivo)
+-cd wordpress/ (acessar a pasta Wordpress)
+vcp wp-config-sample.php wp-config.php (copiar o arquivo de configuração)
+vvim wp-config.php (editar o arquivo de configuração com as seguintes informações:
 
-  Encontrar no arquivo e editar:
-define('DB_NAME', 'nome da base');
-define('DB_USER', 'usuario');
-define('DB_PASSWORD', 'senha');
-define('DB_HOST', 'endpoint do rds mysql');
+-  Encontrar no arquivo e editar:
+-define('DB_NAME', 'nome da base');
+-define('DB_USER', 'usuario');
+-define('DB_PASSWORD', 'senha');
+-define('DB_HOST', 'endpoint do rds mysql');
 
-https://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
-  Encontrar no arquivo, deletar e colar todas as linhas do site:
-  define('AUTH_KEY',         'XyOG`meM9KCY%s%SJhsy171hhMfw4MnW#VMne3y-EE 2r.1l0tQTAZDAL`OwwjCH');
-define('SECURE_AUTH_KEY',  '$8gTHj|AAsy4LV|?^o<i<E|X)3ulta _{5SOp^WiT_2S4Tfav=j#OGV*ik4_:(Ba');
-define('LOGGED_IN_KEY',    '2ybXyg%+TkaVMUj5/=jmxYRq1E,W!CWt^Hpxj?#qq0-1|j!#CmKM5+UI-?Ec7 Q/');
-define('NONCE_KEY',        'k?0KIKi?A^^ve=.-v5egYd!czzvOxbd,%$rs%,&Ar8WtU<oQ+LP.B}c4g0b7b-j:');
-define('AUTH_SALT',        'o-EI$-j/Z3C4wj@08L#>qzN-E:UJdgguW[-JZ57SyHyE|#8Ji~Kv%M6oKO$.2AcR');
+-https://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
+-  Encontrar no arquivo, deletar e colar todas as linhas do site:
+-define('AUTH_KEY',         'XyOG`meM9KCY%s%SJhsy171hhMfw4MnW#VMne3y-EE 2r.1l0tQTAZDAL`OwwjCH');
+-define('SECURE_AUTH_KEY',  '$8gTHj|AAsy4LV|?^o<i<E|X)3ulta _{5SOp^WiT_2S4Tfav=j#OGV*ik4_:(Ba');
+-define('LOGGED_IN_KEY',    '2ybXyg%+TkaVMUj5/=jmxYRq1E,W!CWt^Hpxj?#qq0-1|j!#CmKM5+UI-?Ec7 Q/');
+vdefine('NONCE_KEY',        'k?0KIKi?A^^ve=.-v5egYd!czzvOxbd,%$rs%,&Ar8WtU<oQ+LP.B}c4g0b7b-j:');
+-define('AUTH_SALT',        'o-EI$-j/Z3C4wj@08L#>qzN-E:UJdgguW[-JZ57SyHyE|#8Ji~Kv%M6oKO$.2AcR');
 
-Salvar o arquivo
-yum install php70-mysql (php usar o banco mysql)
-mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
-rm -rf wordpress (deletar a pasta do wordpress vazia)
-chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
-acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha 
+-Salvar o arquivo
+-yum install php70-mysql (php usar o banco mysql)
+-mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
+-rm -rf wordpress (deletar a pasta do wordpress vazia)
+-chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
+-acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha 
 
 
 ### Instalar o Wordpress e configurar o Mysql RDS!
