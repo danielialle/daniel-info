@@ -39,14 +39,18 @@
           -define('SECURE_AUTH_KEY',  '$8gTHj|AAsy4LV|?^o<i<E|X)3ulta _{5SOp^WiT_2S4Tfav=j#OGV*ik4_:(Ba');
           -define('LOGGED_IN_KEY',    '2ybXyg%+TkaVMUj5/=jmxYRq1E,W!CWt^Hpxj?#qq0-1|j!#CmKM5+UI-?Ec7 Q/');
           -define('NONCE_KEY',        'k?0KIKi?A^^ve=.-v5egYd!czzvOxbd,%$rs%,&Ar8WtU<oQ+LP.B}c4g0b7b-j:');
-      -Salvar o arquivo
-      -yum install php70-mysql (php usar o banco mysql)
-      -mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
-      -rm -rf wordpress (deletar a pasta do wordpress vazia)
-      -chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
-      -acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha   
-      -yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
-      -yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php.
+
+  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
+  - Uso de Shell Script **Linux**.
+  - [Docker](https://www.docker.com/)           
+  - Salvar o arquivo
+  - yum install php70-mysql (php usar o banco mysql)
+  - mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
+  - rm -rf wordpress (deletar a pasta do wordpress vazia)
+  - chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
+  - acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha   
+  - yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
+  - yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php.
  
 
 ### Instalar o Wordpress e configurar o Mysql RDS!
