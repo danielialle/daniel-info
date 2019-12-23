@@ -30,10 +30,10 @@
   - vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
   - Encontrar no arquivo e editar:
     
-          -define('DB_NAME', 'nome da base');
-          -define('DB_USER', 'usuario');
-          -define('DB_PASSWORD', 'senha');
-          -define('DB_HOST', 'endpoint do rds mysql');
+          -define('DB_NAME', 'nome da base'); (nome do Banco)
+          -define('DB_USER', 'usuario'); (nome do usuário)
+          -define('DB_PASSWORD', 'senha'); (senha do banco)
+          -define('DB_HOST', 'endpoint do rds mysql'); (endereço do banco RDS)
    
      - https ://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
      - Encontrar no arquivo, deletar e colar todas as linhas do site:
