@@ -67,20 +67,20 @@
     - user nginx (remover)
     - user apache (adicionar)
   - Encontrar esse trecho no arquivo e editar para essas informações:
-    - 
-        server {
-        listen       80 default_server;
-        #listen       [::]:80 default_server;
-        server_name  ec2-18-188-174-37.us-east-2.compute.amazonaws.com;
-        root         /var/www/html;
-     - 
-        location / {
-        root           /var/www/html;
-        proxy_pass   http://127.0.0.1:8080/;
-        proxy_redirect  off;
-        proxy_set_header  Host $http_host;
-        proxy_set_header  X-Real-IP $remote_addr;
-         }  
+    
+          -server {
+          -listen       80 default_server;
+          -#listen       [::]:80 default_server;
+          -server_name  ec2-18-188-174-37.us-east-2.compute.amazonaws.com;
+          -root         /var/www/html;
+   - Encontrar esse trecho no arquivo e editar para essas informações:
+    
+          -location / {
+          -root           /var/www/html;
+          -proxy_pass   http://127.0.0.1:8080/;
+          -proxy_set_header  Host $http_host;
+          -proxy_set_header  X-Real-IP $remote_addr;
+     
   - wget https://wordpress.org/latest.tar.gz (Instalar a última versão):
   - tar -xzf latest.tar.gz (descompactar o arquivo).
   - cd wordpress/ (acessar a pasta Wordpress).
