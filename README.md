@@ -3,8 +3,9 @@
 ### Instalação do Servidor!
 ​
   - Ao Criar o servidor EC2 deve atualizar e instalar os seguintes pacotes:
+     - sudo su (entrar com superusuário)
      - yum update (atualizar pacotes).
-     - yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor.
+     - yum install httpd24 (apache) fazer o service httpd start e confirmar se o apache esta executando no browser com o endereço do servidor AWS.
      - yum install php70 (php) testar uma pagina com codigo em php e salvar index.php na pasta /var/www/html e testar o php.
  
  ### Instalação do RDS Mysql 5.7! 
