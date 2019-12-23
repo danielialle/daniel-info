@@ -10,29 +10,31 @@
  
  ### Instalação do RDS Mysql 5.7! 
 ​
-  - Criar um RDS Mysql versão 5.7 com acesso apenas a rede interna amazon na porta 3306, usuario e senha do banco.
+  - Criar um RDS Mysql versão 5.7 com acesso apenas a rede interna amazon na porta 3306, informar nome do banco, usuario e senha do banco.
      
   ### Configurar o acesso Mysql e criar Databade para o Wordpress!  
 ​
-  - No servidor apache instalar o mysql:
+  - No servidor EC2 apache instalar o mysql:
      - yum install mysql.
      - Conectar no servidor RDS através do comando: mysql -h database-1.cndqlf2jwce3.us-east-2.rds.amazonaws.com -P 3306 -u admin -p.
-     - Criar um database: create databse caseinfo.
+     - Informar a senha do Banco.
+     - Criar um database no mysql: create database caseinfo. (no exemplo foi criado a base caseinfo)
      
   ### Instalar o Wordpress e configurar o Mysql RDS!  
 ​
+  - CD /var/www/html
   - wget https://wordpress.org/latest.tar.gz (Instalar a última versão):
-  - tar -xzf latest.tar.gz (desconpactar o arquivo).
+  - tar -xzf latest.tar.gz (descompactar o arquivo).
   - cd wordpress/ (acessar a pasta Wordpress).
   - cp wp-config-sample.php wp-config.php (copiar o arquivo de configuração).
   - vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
   
      - Encontrar no arquivo e editar:
      
-           -define('DB_NAME', 'nome da base');
-           -define('DB_USER', 'usuario');
-           -define('DB_PASSWORD', 'senha');
-           -define('DB_HOST', 'endpoint do rds mysql');
+          -define('DB_NAME', 'nome da base');
+          -define('DB_USER', 'usuario');
+          -define('DB_PASSWORD', 'senha');
+          -define('DB_HOST', 'endpoint do rds mysql');
         
      - https ://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
      - Encontrar no arquivo, deletar e colar todas as linhas do site:
@@ -47,7 +49,7 @@
   - mv wordpress/* . (mover todos os arquivos da pasta para /var/www/html)
   - rm -rf wordpress (deletar a pasta do wordpress vazia)
   - chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
-  - acessar o endereço so servidor e concluir a instalação do Wordpress informando os dados de acesso usuario e senha do Banco  
+  - acessar o endereço do servidor no browser e concluir a instalação do Wordpress informando os dados de acesso usuario e senha do Banco  
   
 ### Instalar o Wordpress e configurar o Mysql RDS!
 
