@@ -73,6 +73,7 @@
           -#listen       [::]:80 default_server;
           -server_name  ec2-18-188-174-37.us-east-2.compute.amazonaws.com;
           -root         /var/www/html;
+          -}
    - Encontrar esse trecho no arquivo e editar para essas informações:
     
           -location / {
@@ -80,84 +81,26 @@
           -proxy_pass   http://127.0.0.1:8080/;
           -proxy_set_header  Host $http_host;
           -proxy_set_header  X-Real-IP $remote_addr;
+          -}
      
-  - wget https://wordpress.org/latest.tar.gz (Instalar a última versão):
-  - tar -xzf latest.tar.gz (descompactar o arquivo).
-  - cd wordpress/ (acessar a pasta Wordpress).
-  - cp wp-config-sample.php wp-config.php (copiar o arquivo de configuração).
-  - vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
+  - Salvar arquivo editado nginx.conf
+  - vim /etc/nginx/conf.d/proxy.conf (criar esse acrquivo)
+  - Encontrar esse trecho no arquivo e editar para essas informações:
+ 
+          -proxy_redirect  off;
+          -proxy_set_header  Host $http_host;
+          -proxy_set_header  X-Real-IP $remote_addr;
+          -proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          -client_max_body_size 10m;
+          -client_body_buffer_size 128k;
+          -proxy_send_timeout 90;
+          -proxy_connect_timeout 90;
+          -proxy_read_timeout 90;
+          -proxy_buffer_size 4k;
+          -proxy_buffers 4 32k;
+          -roxy_busy_buffers_size 64k;
+          -proxy_temp_file_write_size 64k;
+     
   
-### Instalar o Wordpress e configurar o Mysql RDS!
-
-​
-
-  - cd 
-  - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
-  - Uso de Shell Script **Linux**.
-  - [Docker](https://www.docker.com/) 
-
-### Arquitertura!
-​
- - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
- - [Apache](https://www.apache.org/) servidor para o WordPress.
- - [PHP](https://php.net/) a última versão.
- - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
- - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-
- **Modelo conceitual**
-​
-
-  - [Nginx](https://www.nginx.com/) configurado como proxy para o Apache.
-  - [Apache](https://www.apache.org/) servidor para o WordPress.
-  - [PHP](https://php.net/) a última versão.
-  - [MySql](https://www.mysql.com/) Versão mínima requirida 5.7.
-  - [WordPress](https://wordpress.org) última versão configurada no servidor Apache.
-  
-  **Modelo conceitual**
-
-[![N|Solid](https://apiki.com/wp-content/uploads/2019/05/Screenshot_20190515_174205.png)](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-​
-
----
-​
-
-### Se liga!
-​
-
-Você também pode usar como **Diferencial**:
-
- - [Docker Compose](https://docs.docker.com/compose/).
- - [Kubernetes](https://kubernetes.io/).
- - [Ansible](https://www.ansible.com/).
- - [RDS AWS](https://aws.amazon.com/pt/rds/).
- - Outras tecnologias para somar no projeto. 
-​
-  
-  - [Docker Compose](https://docs.docker.com/compose/).
-  - [Kubernetes](https://kubernetes.io/).
-  - [Ansible](https://www.ansible.com/).
-  - [RDS AWS](https://aws.amazon.com/pt/rds/).
-  - Outras tecnologias para somar no projeto.  
-
----
-​
-
-### Entrega
-​
-
-1. Efetue o fork deste repositório e crie um branch com o seu nome e sobrenome. (exemplo: fulano-dasilva)
-2. Após finalizar o desafio, crie um Pull Request.
-3. Aguarde algum contribuidor realizar o code review.
-4. Deverá conter a documentação para instalação e configuração README.md.
-5. Enviar para o email wphost@apiki.com os dados de acesso SSH com permissão root, da máquina configurada na AWS.
-​
-
----
-​
-
-### Validação
-​
-
-* Será executado os precessos de instalação e configuração de acordo com a orientação da documentação em um servidor interno da Apiki.
-* Será avaliado o processo de automação para criação do ambiente em cloud, tempo de execução e a configuração no server na AWS com os dados fornecidos pelo candidato.
-* Deverar constar pelo menos 2 containers.
+  - service httpd restart
+  - service nginx restart
