@@ -22,7 +22,7 @@
      
   ### Instalar o Wordpress e configurar o Mysql RDS!  
 ​
-  - CD /var/www/html
+  - cd /var/www/html
   - wget https://wordpress.org/latest.tar.gz (Instalar a última versão):
   - tar -xzf latest.tar.gz (descompactar o arquivo).
   - cd wordpress/ (acessar a pasta Wordpress).
@@ -51,11 +51,47 @@
   - chown -R apache:apache (alterar usuário dos arquivos da pasta /var/www/html)
   - acessar o endereço do servidor no browser e concluir a instalação do Wordpress informando os dados de acesso usuario e senha do Banco  
   
+  ### Instalar o Nginx!  
+​
+  - cd /etc/httpd/conf/httpd.conf
+   -no arquivo encontrar a linha:
+     -Listen 80
+   -substituir por
+     -Listen 127.0.0.1:8080
+  - Salvar o arquivo
+  - service httpd restart (restart no serviço do apache)
+  - yum install nginx
+  - service nginx restart (iniciando o serviço nginx)
+  - vim /etc/nginx/nginx.conf
+  - Alterar as seguintes linhas no arquivo nginx.conf:
+    - user nginx (remover)
+    - user apache (adicionar)
+  - Encontrar esse trecho no arquivo e editar para essas informações:
+    - 
+        server {
+        listen       80 default_server;
+        #listen       [::]:80 default_server;
+        server_name  ec2-18-188-174-37.us-east-2.compute.amazonaws.com;
+        root         /var/www/html;
+     - 
+        location / {
+        root           /var/www/html;
+        proxy_pass   http://127.0.0.1:8080/;
+        proxy_redirect  off;
+        proxy_set_header  Host $http_host;
+        proxy_set_header  X-Real-IP $remote_addr;
+         }  
+  - wget https://wordpress.org/latest.tar.gz (Instalar a última versão):
+  - tar -xzf latest.tar.gz (descompactar o arquivo).
+  - cd wordpress/ (acessar a pasta Wordpress).
+  - cp wp-config-sample.php wp-config.php (copiar o arquivo de configuração).
+  - vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
+  
 ### Instalar o Wordpress e configurar o Mysql RDS!
 
 ​
 
-  - O projeto dever ser configurado na [AWS](https://aws.amazon.com/free/), crie uma conta Free.
+  - cd 
   - A máquina configurada deverar ter às portas 80, 443 e 22 abertas.
   - Uso de Shell Script **Linux**.
   - [Docker](https://www.docker.com/) 
