@@ -28,14 +28,13 @@
   - cd wordpress/ (acessar a pasta Wordpress).
   - cp wp-config-sample.php wp-config.php (copiar o arquivo de configuração).
   - vim wp-config.php (editar o arquivo de configuração com as seguintes informações:
-  
-     - Encontrar no arquivo e editar:
-     
+  - Encontrar no arquivo e editar:
+    
           -define('DB_NAME', 'nome da base');
           -define('DB_USER', 'usuario');
           -define('DB_PASSWORD', 'senha');
           -define('DB_HOST', 'endpoint do rds mysql');
-        
+   
      - https ://api.wordpress.org/secret-key/1.1/salt/ (acessar este endereço e copiar as linhas para cookies que o WordPress e substituir no arquivo )
      - Encontrar no arquivo, deletar e colar todas as linhas do site:
     
